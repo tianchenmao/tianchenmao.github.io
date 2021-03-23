@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, STAR DREAM">
+    <meta name="keywords" content="Bayes Filter, STAR DREAM">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | STAR DREAM</title>
+    <title>Bayes Filter | STAR DREAM</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">Bayes Filter</h1>
                 </div>
             </div>
         </div>
@@ -429,9 +429,17 @@
             <div class="row tag-cate">
                 <div class="col s7">
                     
-                          <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
-                          </div>
+                    <div class="article-tag">
+                        
+                            <a href="/tags/Bayes/">
+                                <span class="chip bg-color">Bayes</span>
+                            </a>
+                        
+                            <a href="/tags/Filter/">
+                                <span class="chip bg-color">Filter</span>
+                            </a>
+                        
+                    </div>
                     
                 </div>
                 <div class="col s5 right-align">
@@ -443,7 +451,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-13
+                    2021-03-22
                 </div>
                 
 
@@ -464,20 +472,34 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="quick-start">Quick Start</h2>
-<h3 id="create-a-new-post">Create a new post</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="run-server">Run server</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="generate-static-files">Generate static files</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="deploy-to-remote-sites">Deploy to remote sites</h3>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+                <h1 id="Bayes-Filter"><a href="#Bayes-Filter" class="headerlink" title="Bayes Filter"></a>Bayes Filter</h1><p>关于本文：这是一份简约的入门教程。</p>
+<h2 id="滤波是什么"><a href="#滤波是什么" class="headerlink" title="滤波是什么"></a>滤波是什么</h2><p>滤波是一种方法，手段，在时移（time-varying）系统中，通过对带有噪声的观测${z_k}$ 来估计隐状态$x_k$的处理方法；</p>
+<p>滤波（filtering）专门是指利用前面 $k$个观测 $z_1,z_2,…,z_k$  来估计第$k$个隐状态$x_k$的方法,记作$x_k|z_{1:k}$。</p>
+<p>另外，如果利用前面$d(d&lt;k)$个观测来估计第$k$个状态，则称为预测（prediction），具体地，叫 $k-d$步预测；</p>
+<p>如果利用前面$d$个观测 $z_{1:d}$来估计第$k$个状态，则称为平滑或内插（smoothing)。</p>
+<p>所以其实滤波(filtering)就是 $d=k$ 的情形。</p>
+<h2 id="状态、控制、观测"><a href="#状态、控制、观测" class="headerlink" title="状态、控制、观测"></a>状态、控制、观测</h2><p>但是上述定义并没有考虑系统的控制量，如果考虑控制量，系统模型就如图1所示:</p>
+<p><img src="/2021/03/22/Bayes-Filter/Markov.png" alt="Markov"></p>
+<p>符号说明：$x$为状态量，$z$为观测量，$u$为控制量</p>
+<p>注意，这张图非常重要，它代表着隐马尔可夫模型（HMM），后者是贝叶斯滤波的基础假设，对隐马尔可夫模型的探讨超出了本篇的范畴，这里只做简单介绍。读者可以想象，作为一个普通人（不是全知全能的神明），想要知道一个系统的状态，只能通过测量的手段，再通过滤波等手段得到状态的最优估计。在这里，系统状态$x$就是隐变量，观测值$z$是观测变量。观测得到的是既定的结果，但在它的背后，真实的状态其实是在以一定概率转移的，并且状态本身未必是确定的，它可能是一个范围，有一定的方差（模型噪声）。另一方面，测量所用的仪器存在量测误差（噪声），这个量测误差是随机的，又在观测值背后增加了一层随机性。而我们的目的就是从既定的结果去估计一个随机变量（是不是感觉跟极大似然估计很像？）。</p>
+<h2 id="贝叶斯滤波"><a href="#贝叶斯滤波" class="headerlink" title="贝叶斯滤波"></a>贝叶斯滤波</h2><p>贝叶斯滤波的目标是得到$P(x_k|z_{1:k},u_{1:k})$，它的含义是在前k个观测值和控制量的基础上估计第k个状态（状态估计），我们的目标是得到$P(x_k|z_{1:k},u_{1:k})$的递推形式。先来看第一个重要的公式：</p>
+<script type="math/tex; mode=display">
+P(x_k|z_{1:k},u_{1:k})=\frac{P(z_k|x_k,z_{1:k-1},u_{1:k})P(x_k|z_{1:k-1},u_{1:k})}{P(z_k|z_{1:k-1},u_{1:k})} \tag{1.1}</script><p>这个公式就是在$z_{1:k-1},u_{1:k}$条件下的贝叶斯公式（这大概就是贝叶斯滤波为什么叫贝叶斯滤波的原因吧）</p>
+<p>接下来讲引入贝叶斯滤波中的基本假设：<strong>Markov性假设: k时刻的状态由k-1时刻的状态和k时刻输入的控制量决定。k时刻的观测仅同k时刻的状态相关。</strong>由此我们得到</p>
+<script type="math/tex; mode=display">
+P(x_k|x_{1:k-1},z_{1:k},u_{1:k})=P(x_k|x_{k-1},u_k) \\
+P(z_k|x_k,z_{1:k-1},u_{1:k})=P(z_k|x_k)  \\
+P(z_k|z_{1:k-1},u_{1:k})=P(z_k) \tag{1.2}</script><p><strong>上述假设可以通过图1得到直观的理解。</strong>$P(z_k)$与我们所关心的状态$x_k$无关，所以可以把它当做归一化常数$\eta_k$</p>
+<p>为了得到递推形式，我们很自然能想到引出上一时刻的状态$x_{k-1}$，只需要简单地运用全概率公式即可：</p>
+<script type="math/tex; mode=display">
+P(x_k|z_{1:k-1},u_{1:k})=\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_{k-1}|z_{1:k-1},u_{1:k})dx_{k-1}\tag{1.3}</script><p>因为$x_{k-1}$与$u_k$无关，所以式(1.3)修正一下$u$的下标变为</p>
+<script type="math/tex; mode=display">
+P(x_k|z_{1:k-1},u_{1:k})=\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_{k-1}|z_{1:k-1},u_{1:k-1})dx_{k-1}\tag{1.3.1}</script><p>继而式(1.1)可以化成</p>
+<script type="math/tex; mode=display">
+P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_{k-1}|z_{1:k-1},u_{1:k-1})dx_{k-1} \tag{1.4}</script><p>至此，我们得到了贝叶斯滤波的递归形式，之后可能会增加代码实现部分，和对系统模型的进一步说明。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ycwang16/p/5995702.html">细说贝叶斯滤波：Bayes filters</a></p>
+<p>2.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/318701822">通俗地解释卡尔曼滤波器（一）——从贝叶斯滤波器说起</a></p>
+<p>3.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139215491">贝叶斯滤波（Bayesian filtering)</a></p>
 
                 
             </div>
@@ -504,7 +526,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/03/13/hello-world/">http://example.com/2021/03/13/hello-world/</a>
+                    <a href="http://example.com/2021/03/22/Bayes-Filter/">http://example.com/2021/03/22/Bayes-Filter/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -541,7 +563,15 @@
                 <div class="post-meta__tag-list" style="display: inline-block;">
                     
                         <div class="article-tag">
-                            <span class="chip bg-color">无标签</span>
+                            
+                                <a href="/tags/Bayes/">
+                                    <span class="chip bg-color">Bayes</span>
+                                </a>
+                            
+                                <a href="/tags/Filter/">
+                                    <span class="chip bg-color">Filter</span>
+                                </a>
+                            
                         </div>
                     
                 </div>
@@ -709,54 +739,18 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/03/20/Intro-Math/">
+                <a href="/2021/03/22/Bayes-Filter/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="Intro_Math">
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Bayes Filter">
                         
-                        <span class="card-title">Intro_Math</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-20
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            fur star
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/03/06/logistic-regression/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/1.jpg" class="responsive-img" alt="logistic regression">
-                        
-                        <span class="card-title">logistic regression</span>
+                        <span class="card-title">Bayes Filter</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -767,27 +761,78 @@
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-06
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-22
                             </span>
                         <span class="publish-author">
                             
-                            <i class="fas fa-bookmark fa-fw icon-category"></i>
-                            
-                            <a href="/categories/Machine-Learning/" class="post-category">
-                                    Machine Learning
-                                </a>
-                            
-                            <a href="/categories/Machine-Learning/regression/" class="post-category">
-                                    regression
-                                </a>
-                            
-                            <a href="/categories/Machine-Learning/classification/" class="post-category">
-                                    classification
-                                </a>
-                            
+                            <i class="fas fa-user fa-fw"></i>
+                            fur star
                             
                         </span>
                     </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Bayes/">
+                        <span class="chip bg-color">Bayes</span>
+                    </a>
+                    
+                    <a href="/tags/Filter/">
+                        <span class="chip bg-color">Filter</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                本篇&nbsp;<i class="far fa-dot-circle"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/03/22/Bayes-Filter/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="Bayes Filter">
+                        
+                        <span class="card-title">Bayes Filter</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-22
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            fur star
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/Bayes/">
+                        <span class="chip bg-color">Bayes</span>
+                    </a>
+                    
+                    <a href="/tags/Filter/">
+                        <span class="chip bg-color">Filter</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -916,6 +961,36 @@
 
 </main>
 
+
+<script src="https://cdn.bootcss.com/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script>
+    MathJax.Hub.Config({
+        tex2jax: {inlineMath: [['$', '$'], ['\(', '\)']]}
+    });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    menuSettings: {
+      zoom: "None"
+    },
+    showMathMenu: true,
+    jax: ["input/TeX","output/CommonHTML"],
+    extensions: ["tex2jax.js"],
+    TeX: {
+      extensions: ["AMSmath.js","AMSsymbols.js"],
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+      inlineMath: [["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]]
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.6.1/MathJax.js"></script>
 
 
 
@@ -1205,6 +1280,21 @@ $(function () {
     <script src="/libs/instantpage/instantpage.js" type="module"></script>
     
 
+<script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 </body>
 
 </html>
