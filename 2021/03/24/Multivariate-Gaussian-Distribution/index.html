@@ -613,7 +613,7 @@ x_a=\underbrace{\begin{pmatrix}\mathbb{I}_{m\times m}&\mathbb{O}_{m\times n}\end
 x_{b\cdot a}=x_b-\Sigma_{ba}\Sigma_{aa}^{-1}x_a\\
 \mu_{b\cdot a}=\mu_b-\Sigma_{ba}\Sigma_{aa}^{-1}\mu_a\\
 \Sigma_{bb\cdot a}=\Sigma_{bb}-\Sigma_{ba}\Sigma_{aa}^{-1}\Sigma_{ab}
-\tag{19}</script><p>需要注意的是，<strong>3个符号量中只有第一个才是我们真正定义的要使用的（后续将在它的基础上进行推导），后两个符号量只是相当于为式子提供一个简称</strong>。$x_{b\cdot a}$的具体定义自于技巧性的构造，但我们简单地观察一下形式可以发现，一旦我们得到了$x_{b\cdot a}$服从的分布的信息，我们就能建立$x_a$与$x_b$之间的联系，继而推出$p(x_b|x_a)$。根据$x_{b\cdot a}$的定义，我们构造如下等式：</p>
+\tag{19}</script><p>需要注意的是，<strong>3个符号量中只有第一个才是我们定义的（后续将在它的基础上进行推导），后两个都是在第一个基础上推出来的，只是先在这里列出来</strong>。$x_{b\cdot a}$的具体定义自于技巧性的构造，但我们简单地观察一下形式可以发现，一旦我们得到了$x_{b\cdot a}$服从的分布的信息，我们就能建立$x_a$与$x_b$之间的联系，继而推出$p(x_b|x_a)$。根据$x_{b\cdot a}$的定义，我们构造如下等式：</p>
 <script type="math/tex; mode=display">
 x_{b\cdot a}=\begin{pmatrix}-\Sigma_{ba}\Sigma_{aa}^{-1}&\mathbb{I}_{n\times n}\end{pmatrix}\begin{pmatrix}x_a\\x_b\end{pmatrix}
 \tag{20}</script><p>利用引理可得：</p>
