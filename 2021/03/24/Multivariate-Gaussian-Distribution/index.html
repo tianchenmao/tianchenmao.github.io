@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Bayes Filter, STAR DREAM">
+    <meta name="keywords" content="Multivariate Gaussian Distribution, STAR DREAM">
     <meta name="description" content="">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Bayes Filter | STAR DREAM</title>
+    <title>Multivariate Gaussian Distribution | STAR DREAM</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -310,12 +310,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/8.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/16.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Bayes Filter</h1>
+                    <h1 class="description center-align post-title">Multivariate Gaussian Distribution</h1>
                 </div>
             </div>
         </div>
@@ -431,12 +431,8 @@
                     
                     <div class="article-tag">
                         
-                            <a href="/tags/Bayes/">
-                                <span class="chip bg-color">Bayes</span>
-                            </a>
-                        
-                            <a href="/tags/Filter/">
-                                <span class="chip bg-color">Filter</span>
+                            <a href="/tags/Gaussian/">
+                                <span class="chip bg-color">Gaussian</span>
                             </a>
                         
                     </div>
@@ -451,7 +447,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-03-22
+                    2021-03-24
                 </div>
                 
 
@@ -472,34 +468,138 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <h1 id="Bayes-Filter"><a href="#Bayes-Filter" class="headerlink" title="Bayes Filter"></a>Bayes Filter</h1><p>关于本文：这是一份简约的入门教程。</p>
-<h2 id="滤波是什么"><a href="#滤波是什么" class="headerlink" title="滤波是什么"></a>滤波是什么</h2><p>滤波是一种方法，手段，在时移（time-varying）系统中，通过对带有噪声的观测${z_k}$ 来估计隐状态$x_k$的处理方法；</p>
-<p>滤波（filtering）专门是指利用前面 $k$个观测 $z_1,z_2,…,z_k$  来估计第$k$个隐状态$x_k$的方法,记作$x_k|z_{1:k}$。</p>
-<p>另外，如果利用前面$d(d&lt;k)$个观测来估计第$k$个状态，则称为预测（prediction），具体地，叫 $k-d$步预测；</p>
-<p>如果利用前面$d$个观测 $z_{1:d}$来估计第$k$个状态，则称为平滑或内插（smoothing)。</p>
-<p>所以其实滤波(filtering)就是 $d=k$ 的情形。</p>
-<h2 id="状态、控制、观测"><a href="#状态、控制、观测" class="headerlink" title="状态、控制、观测"></a>状态、控制、观测</h2><p>但是上述定义并没有考虑系统的控制量，如果考虑控制量，系统模型就如图1所示:</p>
-<p><img src="/2021/03/22/Bayes-Filter/Markov.png" alt="Markov"></p>
-<p>符号说明：$x$为状态量，$z$为观测量，$u$为控制量</p>
-<p>注意，这张图非常重要，它代表着隐马尔可夫模型（HMM），后者是贝叶斯滤波的基础假设，对隐马尔可夫模型的探讨超出了本篇的范畴，这里只做简单介绍。读者可以想象，作为一个普通人（不是全知全能的神明），想要知道一个系统的状态，只能通过测量的手段，再通过滤波等手段得到状态的最优估计。在这里，系统状态$x$就是隐变量，观测值$z$是观测变量。观测得到的是既定的结果，但在它的背后，真实的状态其实是在以一定概率转移的，并且状态本身未必是确定的，它可能是一个范围，有一定的方差（模型噪声）。另一方面，测量所用的仪器存在量测误差（噪声），这个量测误差是随机的，又在观测值背后增加了一层随机性。而我们的目的就是从既定的结果去估计一个随机变量（是不是感觉跟极大似然估计很像？）。</p>
-<h2 id="贝叶斯滤波"><a href="#贝叶斯滤波" class="headerlink" title="贝叶斯滤波"></a>贝叶斯滤波</h2><p>贝叶斯滤波的目标是得到$P(x_k|z_{1:k},u_{1:k})$，它的含义是在前k个观测值和控制量的基础上估计第k个状态（状态估计），我们的目标是得到$P(x_k|z_{1:k},u_{1:k})$的递推形式。先来看第一个重要的公式：</p>
+                <h1 id="多元高斯分布完全指南"><a href="#多元高斯分布完全指南" class="headerlink" title="多元高斯分布完全指南"></a>多元高斯分布完全指南</h1><h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>先来看一张图：</p>
+<p><img src="/2021/03/24/Multivariate-Gaussian-Distribution/1.png" alt="图1"></p>
+<p>如果我让你从A、B中选出一个离群点，你觉得谁更合适？从欧式距离来比较，A、B两点到均值（图中的原点）的距离相同，但从直觉上看，B显然更融入群体。这是因为两者在比较时尺度或者说量纲（scalar）没有统一，就像你拿百万面额的津巴布韦币同人民币做比较一样，图中对应的尺度就是维度的方差。当你对每个维度的尺度进行归一化处理后（即让维度上的每个数据除以维度对应的标准差（方差的算数平方根）为什么是平方根？因为我们最终希望修正后的尺度可以简单采用欧式距离，而欧式距离的定义中显然有一个平方根）图就变成下面这样：</p>
+<p><img src="/2021/03/24/Multivariate-Gaussian-Distribution/3.jpg" alt="图2"></p>
+<p>现在就可以简单地用欧式距离判断谁是离群点了</p>
+<h2 id="一元高斯分布"><a href="#一元高斯分布" class="headerlink" title="一元高斯分布"></a>一元高斯分布</h2><p>如果你学过概率论，那你应该对上面的引子感到熟悉，因为在一元高斯分布中，我们经常会对随机变量$X$进行标准化——$Z=\frac{X-\mu}{\sigma}$，这同之前我们所做的工作相比不能说完全一致，只能说一模一样（XD）。引子就先告一段落，我们很快会再来回顾它。先来复习一下一元高斯分布的有关知识：</p>
 <script type="math/tex; mode=display">
-P(x_k|z_{1:k},u_{1:k})=\frac{P(z_k|x_k,z_{1:k-1},u_{1:k})P(x_k|z_{1:k-1},u_{1:k})}{P(z_k|z_{1:k-1},u_{1:k})} \tag{1.1}</script><p>这个公式就是在$z_{1:k-1},u_{1:k}$条件下的贝叶斯公式（这大概就是贝叶斯滤波为什么叫贝叶斯滤波的原因吧）</p>
-<p>接下来讲引入贝叶斯滤波中的基本假设：<strong>Markov性假设: k时刻的状态由k-1时刻的状态和k时刻输入的控制量决定。k时刻的观测仅同k时刻的状态相关。</strong>由此我们得到</p>
+\begin{aligned}
+p(x) &=\frac{1}{\sigma \sqrt{2 \pi}} \cdot e^{-\frac{1}{2} \cdot\left(\frac{x-\mu}{\sigma}\right)^{2}} \\
+1 &=\int_{-\infty}^{+\infty} p(x)dx
+\end{aligned}
+\tag{1}</script><p>令$Z=\frac{X-\mu}{\sigma}$</p>
 <script type="math/tex; mode=display">
-P(x_k|x_{1:k-1},z_{1:k},u_{1:k})=P(x_k|x_{k-1},u_k) \\
-P(z_k|x_k,z_{1:k-1},u_{1:k})=P(z_k|x_k)  \\
-P(z_k|z_{1:k-1},u_{1:k})=P(z_k) \tag{1.2}</script><p><strong>上述假设可以通过图1得到直观的理解。</strong>$P(z_k)$与我们所关心的状态$x_k$无关，所以可以把它当做归一化常数$\eta_k$</p>
-<p>为了得到递推形式，我们很自然能想到引出上一时刻的状态$x_{k-1}$，只需要简单地运用全概率公式即可：</p>
+\begin{aligned}
+\because x(z) &=z \cdot \sigma+\mu \\
+\therefore p(x(z)) &=\frac{1}{\sigma \sqrt{2 \pi}} \cdot e^{-\frac{1}{2} \cdot(z)^{2}} \\
+1 &=\int_{-\infty}^{+\infty} p(x(z)) d x \\
+&=\int_{-\infty}^{+\infty} \frac{1}{\sigma \sqrt{2 \pi}} \cdot e^{-\frac{1}{2} \cdot(z)^{2}} d x \\
+&=\int_{-\infty}^{+\infty} \frac{1}{\sqrt{2 \pi}} \cdot e^{-\frac{1}{2} \cdot(z)^{2}} dz 
+\end{aligned}
+\tag{2}</script><p>此时我们说随机变量 $Z \sim \mathcal{N}(0,1)$ 服从一元标准高斯分布, 其均值 $\mu=0,$ 方差 $\sigma^{2}=1,$ 其概率密度函数为</p>
 <script type="math/tex; mode=display">
-P(x_k|z_{1:k-1},u_{1:k})=\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_{k-1}|z_{1:k-1},u_{1:k})dx_{k-1}\tag{1.3}</script><p>因为$x_{k-1}$与$u_k$无关，所以式(1.3)修正一下$u$的下标变为</p>
+p(z)=\frac{1}{\sqrt{2 \pi}} \cdot e^{-\frac{1}{2} \cdot(z)^{2}}
+\tag{3}</script><h2 id="多元高斯分布"><a href="#多元高斯分布" class="headerlink" title="多元高斯分布"></a>多元高斯分布</h2><h3 id="1-概率密度函数（PDF）"><a href="#1-概率密度函数（PDF）" class="headerlink" title="1.概率密度函数（PDF）"></a>1.概率密度函数（PDF）</h3><p>接下来我们将正式探讨多元情况下的高斯分布，从一元到多元，我们的随机变量也进化成了随机向量，我们用$X=(x_1,x_2,…,x_n)$表示，$x_i$是向量的一个分量，是单个随机变量。我们先从最简单的情况，各个随机变量之间相互独立，开始讨论。</p>
+<p>假设我们有随机向量 $\vec{Z}=\left[Z_{1}, \cdots, Z_{n}\right]^{\top},$ 其中 $Z_{i} \sim \mathcal{N}(0,1)(i=1, \cdots, n)$ 且 $Z_{i}, Z_{j}(i, j=1, \cdots, n \wedge i \neq j)$ 彼此独立, 即随机向量中的每个随机变量 $Z_{i}$ 都服从标准高斯分布且两两彼此独立. 则由(3)与独立随机变量概率密度函数之间的关系, 我们可得随机向量 $\vec{Z}=\left[Z_{1}, \cdots, Z_{n}\right]^{\top}$ 的联合概率密度函数为</p>
 <script type="math/tex; mode=display">
-P(x_k|z_{1:k-1},u_{1:k})=\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_{k-1}|z_{1:k-1},u_{1:k-1})dx_{k-1}\tag{1.3.1}</script><p>继而式(1.1)可以化成</p>
+\begin{aligned}
+p\left(z_{1}, \cdots, z_{n}\right) &=\prod_{i=1}^{n} \frac{1}{\sqrt{2 \pi}} \cdot e^{-\frac{1}{2} \cdot\left(z_{i}\right)^{2}} \\
+&=\frac{1}{(2 \pi)^{\frac{n}{2}}} \cdot e^{-\frac{1}{2} \cdot\left(Z^{\top} Z\right)} \\
+1 &=\int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} p\left(z_{1}, \cdots, z_{n}\right) d z_{1} \cdots d z_{n}
+\end{aligned}
+\tag{4}</script><p>我们称随机向量 $\vec{Z} \sim \mathcal{N}(\overrightarrow{0}, \mathbf{I})$, 即随机向量服从均值为零向量, 协方差矩阵为单位矩阵的高斯分布. 在这里, 随机向量 $\vec{Z}$ 的协方差矩阵是 $\operatorname{Cov}\left(Z_{i}, Z_{j}\right), i, j=1, \cdots, n$ 组成的矩阵, 即</p>
 <script type="math/tex; mode=display">
-P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_{k-1}|z_{1:k-1},u_{1:k-1})dx_{k-1} \tag{1.4}</script><p>至此，我们得到了贝叶斯滤波的递归形式，之后可能会增加代码实现部分，和对系统模型的进一步说明。</p>
-<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>1.<a target="_blank" rel="noopener" href="https://www.cnblogs.com/ycwang16/p/5995702.html">细说贝叶斯滤波：Bayes filters</a></p>
-<p>2.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/318701822">通俗地解释卡尔曼滤波器（一）——从贝叶斯滤波器说起</a></p>
-<p>3.<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/139215491">贝叶斯滤波（Bayesian filtering)</a></p>
+\begin{aligned}
+\left[\operatorname{Cov}\left(Z_{i}, Z_{j}\right)\right]_{n \times n} &=\mathbf{E}\left[(Z-\vec{\mu})(Z-\vec{\mu})^{\top}\right] \\
+&=\mathbf{I}
+\end{aligned}
+\tag{5}</script><p>由于随机向量 $\vec{Z} \sim \mathcal{N}(\overrightarrow{0}, \mathbf{I}),$ 所以其协方差矩阵的对角线元素为1, 其余元素为0. 如果我们取常数 $c=p\left(z_{1}, \cdots, z_{n}\right),$ 则可得函数 $p\left(z_{1}, \cdots, z_{n}\right)$ 的等高线为 $c^{\prime}=Z^{\top} Z,$ 当随机向量 $\vec{Z}$ 为二维向量<br>时, 我们有</p>
+<script type="math/tex; mode=display">
+c^{\prime}=Z^{\top} \cdot Z=\left(z_{1}-0\right)^{2}+\left(z_{2}-0\right)^{2}
+\tag{6}</script><p>显然，其等高线是以(0，0)为圆心的同心圆。</p>
+<p><img src="/2021/03/24/Multivariate-Gaussian-Distribution/4.jpg" alt="图3"></p>
+<p>接下来讨论各随机变量不相互独立的一般情况：</p>
+<p>既然我们能够轻松地处理独立的情况，那只要我们能够把一般的情况转化成独立的情况，问题是不是就迎刃而解了呢？答案是肯定的，幸运的是，我们有如下定理：</p>
+<p><strong>定理1: 若存在随机向量 $\vec{X} \sim \mathcal{N}(\vec{\mu}, \Sigma),$ 其中 $\vec{\mu} \in R^{n}$ 为均值向量, $\Sigma \in S_{++}^{n \times n}$ 半正定实对称矩阵为 $\vec{X}$ 的协方差矩阵, 则存在满秩矩阵 $B \in R^{n \times n},$ 使得 $\vec{Z}=B^{-1}(\vec{X}-\vec{\mu}),$ 而 $\vec{Z} \sim \mathcal{N}(\overrightarrow{0},\mathbf{I})$.</strong></p>
+<p>（满秩的原因是我们需要求逆）</p>
+<p>有了定理1, 我们就可以对随机向量$\vec{X}$ 做相应的线性变换, 使其随机变量在线性变换后彼此独立, 从而求出其联合概率密度函数, 具体地</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\because \vec{Z}&=B^{-1}(\vec{X}-\vec{\mu}), \vec{Z} \sim \mathcal{N}(\overrightarrow{0}, I)\\
+\therefore \quad p\left(z_{1}, \cdots, z_{n}\right) &=\frac{1}{(2 \pi)^{\frac{n}{2}}} \cdot e^{-\frac{1}{2} \cdot\left(Z^{\top} Z\right)} \\
+p\left(z_{1}\left(x_{1}, \cdots, x_{n}\right), \cdots\right) &=\frac{1}{(2 \pi)^{\frac{n}{2}}} \cdot e^{-\frac{1}{2} \cdot\left[\left(B^{-1}(\vec{X}-\vec{\mu})\right)^{\top}\left(B^{-1}(\vec{X}-\vec{\mu})\right)\right]} \\
+&=\frac{1}{(2 \pi)^{\frac{n}{2}}} \cdot e^{-\frac{1}{2} \cdot\left[(\vec{X}-\vec{\mu})^{\top}\left(B B^{\top}\right)^{-1}(\vec{X}-\vec{\mu})\right]} 
+\end{aligned}
+\tag{7}</script><script type="math/tex; mode=display">
+\begin{aligned}
+\therefore \quad 1 &=\int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} p\left(z_{1}\left(x_{1}, \cdots, x_{n}\right), \cdots\right) d z_{1} \cdots d z_{n} \\
+&=\int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} \frac{1}{(2 \pi)^{\frac{n}{2}}} \cdot e^{-\frac{1}{2} \cdot\left[(\vec{X}-\vec{\mu})^{\top}\left(B B^{\top}\right)^{-1}(\vec{X}-\vec{\mu})\right]} d z_{1} \cdots d z_{n}
+\end{aligned}
+\tag{8}</script><p>由多元函数换元变换公式, 我们还需要求出雅可比行列式 $J(\vec{Z} \rightarrow \vec{X}),$ 由(7)可得</p>
+<script type="math/tex; mode=display">
+J(\vec{Z} \rightarrow \vec{X})=\left|B^{-1}\right|=|B|^{-1}=|B|^{-\frac{1}{2}} \cdot\left|B^{\top}\right|^{-\frac{1}{2}}=\left|B B^{\top}\right|^{-\frac{1}{2}}
+\tag{9}</script><p>由(8)(9), 我们可进一步得</p>
+<script type="math/tex; mode=display">
+1=\int_{-\infty}^{+\infty} \cdots \int_{-\infty}^{+\infty} \frac{1}{(2 \pi)^{\frac{n}{2}}\left|B B^{\top}\right|^{\frac{1}{2}}} \cdot e^{-\frac{1}{2} \cdot\left[(\vec{X}-\vec{\mu})^{\top}\left(B B^{\top}\right)^{-1}(\vec{X}-\vec{\mu})\right]} d x_{1} \cdots d x_{n}
+\tag{10}</script><p>我们得到随机向量$\vec{X} \sim \mathcal{N}(\vec{\mu}, \Sigma)$ 的联合概率密度函数为</p>
+<script type="math/tex; mode=display">
+p\left(x_{1}, \cdots, x_{n}\right)=\frac{1}{(2 \pi)^{\frac{n}{2}}\left|B B^{\top}\right|^{\frac{1}{2}}} \cdot e^{-\frac{1}{2} \cdot\left[(\vec{X}-\vec{\mu})^{\top}\left(B B^{\top}\right)^{-1}(\vec{X}-\vec{\mu})\right]}
+\tag{11}</script><p>在(11)中, 随机向量$\vec{X}$ 的协方差矩阵还未得到体现, 我们可通过线性变换(7)做进一步处理</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\Sigma &=\mathbf{E}[(\vec{X}-\vec{\mu})(\vec{X}-\vec{\mu})^{\top}] \\
+&=\mathbf{E}[(B \vec{Z}-\overrightarrow{0})(B \vec{Z}-\overrightarrow{0})^{\top}] \\
+&=\operatorname{Cov}(B \vec{Z}) \\
+&=B \operatorname{Cov}(\vec{Z}) B^{\top} \\
+&=B B^{\top}
+\end{aligned}
+\tag{12}</script><blockquote>
+<p> 常用结论：$E(A\vec{Z}+B)=AE(\vec{Z})+B\\Cov(A\vec{Z}+B)=ACov(\vec{Z})A^{\top}$</p>
+</blockquote>
+<p>我们发现, (11)中 $B B^{\top}$ 就是线性变换前的随机向量 $\vec{X} \sim \mathcal{N}(\vec{\mu}, \Sigma)$ 的协方差矩阵 $\Sigma$, 所以由(11)(12), 我们可以得到联合概率密度函数的最终形式</p>
+<script type="math/tex; mode=display">
+p\left(x_{1}, \cdots, x_{n}\right)=\frac{1}{(2 \pi)^{\frac{n}{2}}|\Sigma|^{\frac{1}{2}}} \cdot e^{.-\frac{1}{2} \cdot [(\vec{X}-\vec{\mu})^{\top} \Sigma^{-1}(\vec{X}-\vec{\mu})]}
+\tag{13}</script><p>这就是多元高斯分布的概率密度函数($pdf$)，非常重要，建议刻进DNA里。</p>
+<h3 id="2-马氏距离与几何意义"><a href="#2-马氏距离与几何意义" class="headerlink" title="2.马氏距离与几何意义"></a>2.马氏距离与几何意义</h3><p>接下来，我们将引入一个广泛被使用的距离度量——马氏距离(Mahalanobis Distance)。单个数据点的马氏距离：$D_{M}(x)=\sqrt{(x-\mu)^{T} \Sigma^{-1}(x-\mu)}$</p>
+<p>是不是很眼熟，没错，其形式与我们刚刚讨论完的多元高斯分布概率密度函数的指数部分完全一致！接下来让我们来看看这个形式究竟有什么几何意义:</p>
+<p>由定理1我们有</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\because \quad \vec{Z} &=B^{-1}(\vec{X}-\vec{\mu}), \vec{Z} \sim \mathcal{N}(\overrightarrow{0}, I) \\
+\therefore \quad \vec{Z}^{\top} \vec{Z} &=\left(B^{-1}(\vec{X}-\vec{\mu})\right)^{\top}\left(B^{-1}(\vec{X}-\vec{\mu})\right) \\
+&=(\vec{X}-\vec{\mu})^{\top}\left(B B^{\top}\right)^{-1}(\vec{X}-\vec{\mu}) \\
+&=(\vec{X}-\vec{\mu})^{\top} \Sigma^{-1}(\vec{X}-\vec{\mu})
+\end{aligned}
+\tag{14}</script><p>再由(12)(14)可得</p>
+<script type="math/tex; mode=display">
+\begin{aligned}
+\vec{Z}^{\top} \vec{Z} &=\left[Q^{\top}(\vec{X}-\vec{\mu})\right]^{\top} \Lambda^{-1}\left[Q^{\top}(\vec{X}-\vec{\mu})\right] \\
+&=\left[Q^{\top}(\vec{X}-\vec{\mu})\right]^{\top}\left(\Lambda^{-\frac{1}{2}}\right)^{\top} \Lambda^{-\frac{1}{2}}\left[Q^{\top}(\vec{X}-\vec{\mu})\right] \\
+&=\left[\Lambda^{-\frac{1}{2}} Q^{\top}(\vec{X}-\vec{\mu})\right]^{\top}\left[\Lambda^{-\frac{1}{2}} Q^{\top}(\vec{X}-\vec{\mu})\right] \\
+&=\left[\left(Q \Lambda^{-\frac{1}{2}}\right)^{\top}(\vec{X}-\vec{\mu})\right]^{\top}\left[\left(Q \Lambda^{-\frac{1}{2}}\right)^{\top}(\vec{X}-\vec{\mu})\right] \\
+&=\left[\left(Q \cdot\left[\begin{array}{cc}
+\frac{1}{\sqrt{\lambda_{1}}} & 0 \\
+0 & \frac{1}{\sqrt{\lambda_{2}}}
+\end{array}\right]\right)^{\top}(\vec{X}-\vec{\mu})\right]^{\top} \\
+& \cdot\left[\left(Q \cdot\left[\begin{array}{cc}
+\frac{1}{\sqrt{\lambda_{1}}} & 0 \\
+0 & \frac{1}{\sqrt{\lambda_{2}}}
+\end{array}\right]\right)^{\top}(\vec{X}-\vec{\mu})\right]
+\end{aligned}
+\tag{15}</script><p>由(15)我们已经可以非常明显地看出线性变换 $\vec{Z}=B^{-1}(\vec{X}-\vec{\mu})$ 的具体操作了</p>
+<p><img src="/2021/03/24/Multivariate-Gaussian-Distribution/5.png" alt="图4"></p>
+<p>上述公式看起来繁琐，实际上只是简单地对协方差矩阵$\Sigma$做了特征分解（协方差矩阵对称半正定）$\lambda$就是特征值。</p>
+<p>回顾一下本篇一开始的引子，由特征值组成的对角阵的作用就是对维度进行拉伸或者说放缩，就是让维度上的数据除以对应的标准差，显然，作为对角阵的协方差矩阵的特征值就是对应维度的方差，两者在此得到统一。接下来看矩阵$Q$的作用，我们继续顺着引子的思路探索下去，统一了维度间的尺度或量纲就高枕无忧了吗，来看一种情况：<br><img src="/2021/03/24/Multivariate-Gaussian-Distribution/2.jpg" alt="图5"></p>
+<p>A与B的欧式距离相同，各维度的尺度也得到了统一，但直觉告诉我们，B点显然更合群，为什么？因为维度之间并不是独立的，图中两个维度线性相关，为了修正这种情况，我们需要去相关化，而这就是</p>
+<p>矩阵$Q$所做的工作。如果维度间保持独立，即协方差矩阵是对角阵，那么$Q$就是单位矩阵$I$。这个时候，等高线的图案是一个标准的椭圆（为什么是椭圆而不是圆，因为特征值对维度进行了拉伸，形成了椭圆的实轴与虚轴）等高线的公式如下,二维情况下就是椭圆：</p>
+<script type="math/tex; mode=display">
+\Delta=(x-\mu)^{T}\Sigma^{-1}(x-\mu)=\sum\limits _{i=1}^{p}(x-\mu)^{T}u_{i}\frac{1}{\lambda_{i}}u_{i}^{T}(x-\mu)=\sum\limits _{i=1}^{p}\frac{y_{i}^{2}}{\lambda_{i}}</script><p><img src="/2021/03/24/Multivariate-Gaussian-Distribution/7.jpg" alt="图6"></p>
+<p>一般情况下，$Q$则是由特征向量堆叠而成的正交矩阵（如果感到陌生的化可以复习一下线代），而等高线变成一个倾斜的椭圆：</p>
+<p><img src="/2021/03/24/Multivariate-Gaussian-Distribution/6.jpg" alt="图7"></p>
+<p>你可以把$Q$理解成旋转矩阵，对标准的椭圆进行旋转（因为旋转矩阵非常普遍与实用，有机会的话我会单独拿出来讲一讲）。也可以认为椭圆其实没变，只是基变了，或者说参考的坐标轴变了，不再是标准正交基，而变成了$Q$中的特征向量组成的单位正交基，在新的坐标轴下（图中的$u_{x}$,$u_{y}$），椭圆依然是标准的，维度依然是相互独立的。</p>
+<p>总结一下：马氏距离就是对原维度进行<strong>尺度归一化加去相关性</strong>，在新的维度下，数据之间的度量就可以简单地用欧氏距离表示。而我们在推导高斯分布的概率密度函数时所用的矩阵$B^{-1}$代表的线性变换也是<strong>拉伸与去相关性</strong>（如果你对此还有疑惑，可以回顾一下图4），使得一般的情况转化为简单的独立情况，方便我们处理。这种转换的思想非常重要，在很多方面都有精彩的运用，比如把非线性问题转换成线性问题来处理。</p>
+<h3 id="3-条件概率与边缘概率"><a href="#3-条件概率与边缘概率" class="headerlink" title="3.条件概率与边缘概率"></a>3.条件概率与边缘概率</h3><p>接下来我们将要探索多元高斯的条件概率分布与边缘概率分布，这一块在统计推断与机器学习中有重要应用，但因为推导的过程比较复杂，不要求完全掌握推导过程，只要混个眼熟就行。</p>
+<p>先来推条件概率（相关的推导方式不唯一，这里我们选择一种比较有技巧性的构造推导）</p>
+<p>首先放一个引理：</p>
+<p><strong>已知 $x\sim\mathcal{N}(\mu,\Sigma), y\sim Ax+b$，那么 $y\sim\mathcal{N}(A\mu+b, A\Sigma A^T)$。$\mathbb{E}[y]=\mathbb{E}[Ax+b]=A\mathbb{E}[x]+b=A\mu+b$，$Var[y]=Var[Ax+b]=Var[Ax]=A\cdot Var[x]\cdot A^T$。</strong></p>
+<p>（这个引理应该很符合直观，也非常容易记忆）</p>
+<p>接下来我们定义3个符号量</p>
+<script type="math/tex; mode=display">
+x_{b\cdot a}=x_b-\Sigma_{ba}\Sigma_{aa}^{-1}x_a\\
+\mu_{b\cdot a}=\mu_b-\Sigma_{ba}\Sigma_{aa}^{-1}\mu_a\\
+\Sigma_{bb\cdot a}=\Sigma_{bb}-\Sigma_{ba}\Sigma_{aa}^{-1}\Sigma_{ab}</script><p>需要注意的是，3个符号量中只有第一个才是我们真正定义的要使用的（后续将以它为基础进行推导），后两个符号量只是相当于为一个式子提供一个简称。至于为什么第一个式子是这么定义的，那我只能说没什么道理可言，不然咋叫构造呢？不过定义$x_{b\cdot a}$这个辅助量有什么用到是比较有讲究。</p>
 
                 
             </div>
@@ -526,7 +626,7 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="http://example.com/2021/03/22/Bayes-Filter/">http://example.com/2021/03/22/Bayes-Filter/</a>
+                    <a href="http://example.com/2021/03/24/Multivariate-Gaussian-Distribution/">http://example.com/2021/03/24/Multivariate-Gaussian-Distribution/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -564,12 +664,8 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
                     
                         <div class="article-tag">
                             
-                                <a href="/tags/Bayes/">
-                                    <span class="chip bg-color">Bayes</span>
-                                </a>
-                            
-                                <a href="/tags/Filter/">
-                                    <span class="chip bg-color">Filter</span>
+                                <a href="/tags/Gaussian/">
+                                    <span class="chip bg-color">Gaussian</span>
                                 </a>
                             
                         </div>
@@ -739,9 +835,10 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
                 <a href="/2021/03/24/Multivariate-Gaussian-Distribution/">
                     <div class="card-image">
@@ -759,9 +856,9 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
                         
                     </div>
                     <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-03-24
-                        </span>
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-24
+                            </span>
                         <span class="publish-author">
                             
                             <i class="fas fa-user fa-fw"></i>
@@ -770,6 +867,7 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
                         </span>
                     </div>
                 </div>
+
                 
                 <div class="card-action article-tags">
                     
@@ -785,7 +883,7 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
         
         <div class="article col s12 m6" data-aos="fade-up">
             <div class="article-badge right-badge text-color">
-                本篇&nbsp;<i class="far fa-dot-circle"></i>
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
             </div>
             <div class="card">
                 <a href="/2021/03/22/Bayes-Filter/">
@@ -815,7 +913,6 @@ P(x_k|z_{1:k},u_{1:k})=\eta_kP(z_k|x_k)\int P(x_k|x_{k-1},z_{1:k-1},u_{1:k})P(x_
                         </span>
                     </div>
                 </div>
-
                 
                 <div class="card-action article-tags">
                     
