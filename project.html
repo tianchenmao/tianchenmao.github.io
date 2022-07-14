@@ -5,7 +5,7 @@
 <li>Delivery:3 standard boxes need to be unloaded on target</li>
 <li>Obstacle avoiding:Obstacles will be randomly placed in ground</li>
 </ul>
-<p><img src="/.%5Cimg/robocup.jpg" alt="robocup"></p>
+<p><img src="/./img/robocup.jpg" alt="robocup"></p>
 <h3 id="My-work"><a href="#My-work" class="headerlink" title="My work:"></a>My work:</h3><ul>
 <li><strong>Writing Logical Part</strong>:I am in charge of flow control, mainly write a finite state machine, which constantly switchs from different task or action.Common task like takeoff,  navigation, searching for target, tracking target, unload object, which is built on basic actions like adjust position and velocity.</li>
 <li><strong>Writing Navigation Part</strong>: I am in charge of motion planning of drone.Our UAV is equiped with realsense D435i(RGB-D camera) or rplidar A2&#x2F;A3&#x2F;S2. So I use ego-planner for visual navigation, movabase (choosing teb as local planner) for lidar navigation.I write an interface to easily incorporate different planner into flowcontrol. I tune the parameter of planner, and add some additional behavier to gain better performance.</li>
